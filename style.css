@@ -1,0 +1,187 @@
+:root{
+  --pink-bg:#ffe4ef;
+  --pink-bg-2:#ffd1e6;
+  --pink-deep:#ff8fb3;
+  --pink-strong:#ff5f96;
+  --pink-line:#ffb6d0;
+  --white:#ffffff;
+  --cream:#fff7fa;
+  --ink:#6b3d55;
+  --ink-soft:#a8637f;
+  --gold:#ffc857;
+  --font-display:'Fredoka', sans-serif;
+  --font-ui:'Quicksand', sans-serif;
+}
+
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 15% 0%, #fff0f6 0%, transparent 45%),
+    radial-gradient(circle at 90% 15%, #ffd8ea 0%, transparent 50%),
+    linear-gradient(180deg, var(--pink-bg) 0%, var(--pink-bg-2) 100%);
+  color:var(--ink);
+  font-family:var(--font-ui);
+  font-weight:500;
+  overflow-x:hidden;
+}
+
+body::before,
+body::after{
+  content:"🎀";
+  position:fixed;
+  font-size:34px;
+  opacity:0.5;
+  z-index:0;
+  filter:drop-shadow(0 4px 6px rgba(255,95,150,0.25));
+}
+body::before{ top:18px; left:18px; transform:rotate(-12deg);}
+body::after{ top:18px; right:18px; transform:rotate(12deg);}
+
+#heartsCanvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+.stage{
+  position:relative;
+  z-index:1;
+  max-width:480px;
+  margin:0 auto;
+  padding:56px 24px 80px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.brand{
+  margin-bottom:34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.brand-bow{
+  font-size:30px;
+  margin-bottom:2px;
+  filter:drop-shadow(0 3px 4px rgba(255,95,150,0.35));
+}
+.brand-eyebrow{
+  display:block;
+  font-family:var(--font-ui);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--pink-strong);
+  margin-bottom:4px;
+}
+.brand-title{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(36px,9vw,50px);
+  margin:0;
+  color:var(--pink-strong);
+  text-shadow:2px 3px 0 var(--white), 0 6px 14px rgba(255,95,150,0.25);
+  line-height:1.1;
+}
+
+.locket{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  margin-bottom:34px;
+}
+
+.locket-frame{
+  position:relative;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:linear-gradient(155deg, var(--white), var(--cream));
+  border:5px solid var(--white);
+  box-shadow:
+    0 0 0 5px var(--pink-deep),
+    0 0 0 9px rgba(255,182,208,0.5),
+    0 18px 30px -12px rgba(255,95,150,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  animation:popIn .6s cubic-bezier(.2,.8,.25,1);
+}
+.locket-frame::after{
+  content:"🎀";
+  position:absolute;
+  top:-6px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:26px;
+  z-index:2;
+  filter:drop-shadow(0 3px 3px rgba(255,95,150,0.4));
+}
+@keyframes popIn{
+  from{opacity:0; transform:scale(0.85);}
+  to{opacity:1; transform:scale(1);}
+}
+
+.locket-photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.note{
+  width:100%;
+  max-width:400px;
+  background:var(--white);
+  border:3px solid var(--pink-line);
+  border-radius:26px;
+  padding:26px 24px;
+  box-shadow:0 18px 34px -16px rgba(255,95,150,0.45);
+  animation:cardIn .6s .1s both cubic-bezier(.2,.8,.25,1);
+}
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(14px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.note-label{
+  display:block;
+  font-family:var(--font-ui);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--pink-strong);
+  margin-bottom:14px;
+}
+.note-label::before{
+  content:"💌 ";
+}
+.note-text{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:19px;
+  line-height:1.65;
+  color:var(--ink);
+  margin:0;
+  word-break:break-word;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+
+@media (max-width:380px){
+  .locket-frame{width:180px; height:180px;}
+  .brand-title{font-size:38px;}
+  body::before,body::after{font-size:26px;}
+}
